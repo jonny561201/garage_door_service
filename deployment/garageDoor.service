@@ -1,0 +1,13 @@
+[Unit]
+Description=Home Automation Garage Door Status Service
+After=network.target
+
+[Service]
+EnvironmentFile=/home/pi/garage_door_service/serviceEnvVariables
+ExecStart=/usr/bin/python3 -u app.py
+WorkingDirectory=/home/pi/garage_door_service
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
