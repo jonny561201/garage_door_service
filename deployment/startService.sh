@@ -64,10 +64,7 @@ function createEnvironmentVariableFile {
 }
 
 function createFile {
-    echo -e "Enter FILE_NAME:${WHITE}"
-    read FILE_NAME
-
-    echo "FILE_NAME=${FILE_NAME}" > serviceEnvVariables
+    echo "FILE_NAME=/home/pi/garage_duration.json" > serviceEnvVariables
 }
 
 
