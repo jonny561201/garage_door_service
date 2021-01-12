@@ -12,21 +12,16 @@ def monitor_status():
     first_status = is_garage_open('1')
     second_status = is_garage_open('2')
 
-    first_door = state.DOORS.get('1')
-    second_door = state.DOORS.get('2')
-    if first_status and first_door.OPEN_TIME is None:
-        first_door.STATUS = Automation.GARAGE.OPEN
-        first_door.OPEN_TIME = datetime.now(pytz.utc)
-        first_door.CLOSED_TIME = None
-    if not first_status and first_door.CLOSED_TIME is None:
-        first_door.STATUS = Automation.GARAGE.CLOSED
-        first_door.CLOSED_TIME = datetime.now(pytz.utc)
-        first_door.OPEN_TIME = None
-    if second_status and second_door.OPEN_TIME is None:
-        second_door.STATUS = Automation.GARAGE.OPEN
-        second_door.OPEN_TIME = datetime.now(pytz.utc)
-        second_door.CLOSED_TIME = None
-    if not second_status and second_door.CLOSED_TIME is None:
-        second_door.STATUS = Automation.GARAGE.CLOSED
-        second_door.CLOSED_TIME = datetime.now(pytz.utc)
-        second_door.OPEN_TIME = None
+    __update_door_status(state.DOORS.get('1'), first_status)
+    __update_door_status(state.DOORS.get('2'), second_status)
+
+
+def __update_door_status(door, status):
+    if status and door.OPEN_TIME is None:
+        door.STATUS = Automation.GARAGE.OPEN
+        door.OPEN_TIME = datetime.now(pytz.utc)
+        door.CLOSED_TIME = None
+    if not status and door.CLOSED_TIME is None:
+        door.STATUS = Automation.GARAGE.CLOSED
+        door.CLOSED_TIME = datetime.now(pytz.utc)
+        door.OPEN_TIME = None
