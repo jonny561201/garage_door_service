@@ -1,6 +1,4 @@
 class DoorState:
-    ACTIVE_THREAD = None
-    STOP_EVENT = None
     CLOSED_TIME = None
     OPEN_TIME = None
     STATUS = None
@@ -8,6 +6,8 @@ class DoorState:
 
 class GarageState:
     __instance = None
+    ACTIVE_THREAD = None
+    STOP_EVENT = None
     DOORS = {'1': DoorState(),
              '2': DoorState()}
 
@@ -17,9 +17,8 @@ class GarageState:
         else:
             GarageState.__instance = self
 
-    def terminate_all_threads(self):
-        for key, door in self.DOORS.items():
-            door.STOP_EVENT.set()
+    def terminate_thread(self):
+        self.STOP_EVENT.set()
 
     @staticmethod
     def get_instance():
