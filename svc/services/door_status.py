@@ -4,8 +4,8 @@ import pytz
 
 from svc.constants.garage_state import GarageState
 from svc.constants.home_automation import Automation
-from svc.utlities.gpio_utils import is_garage_open
-from svc.utlities.file_utils import write_status_to_file
+from svc.utilities.gpio_utils import is_garage_open
+from svc.utilities.file_utils import write_status_to_file
 
 
 def monitor_status():

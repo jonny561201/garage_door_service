@@ -1,6 +1,6 @@
 from svc.constants.garage_state import GarageState
 from svc.services.door_status import monitor_status
-from svc.utlities.event_utils import create_thread
+from svc.utilities.event_utils import create_thread
 
 
 def create_status_app():
