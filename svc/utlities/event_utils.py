@@ -1,5 +1,7 @@
 from threading import Thread, Event
 
+from svc.constants.home_automation import Automation
+
 
 class MyThread(Thread):
     def __init__(self, event, sched_function, function_interval):
@@ -14,7 +16,7 @@ class MyThread(Thread):
 
 
 # stop_event.set() will kill the process
-def create_thread(state, fn, delay=5):
+def create_thread(state, fn, delay=Automation.TIMING.FIVE_SECONDS):
     stop_event = Event()
     state.STOP_EVENT = stop_event
     fn()
