@@ -7,11 +7,15 @@ from svc.constants.home_automation import Automation
 from svc.utilities.event_utils import create_thread
 
 
+def test_function(*args):
+    pass
+
+
 @patch('svc.utilities.event_utils.MyThread')
 @patch('svc.utilities.event_utils.Event')
 class TestEvent:
     STATE = None
-    FUNCT = print
+    FUNCT = test_function
     GARAGE_ID = '1'
 
     def setup_method(self):
