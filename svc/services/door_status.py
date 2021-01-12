@@ -28,3 +28,4 @@ def __update_door_status(door_state, is_open, door_num):
         door_state.STATUS = Automation.GARAGE.CLOSED
         door_state.CLOSED_TIME = now
         door_state.OPEN_TIME = None
+        write_status_to_file(door_num, now)

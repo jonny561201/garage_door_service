@@ -53,7 +53,7 @@ class TestGarageService:
 
         assert self.STATE.DOORS[self.DOOR_ONE].CLOSED_TIME is None
 
-    def test_monitor_status__should_write_status_to_file_for_first_door(self, mock_status, mock_date, mock_file):
+    def test_monitor_status__should_write_status_to_file_when_opens_for_first_door(self, mock_status, mock_date, mock_file):
         mock_status.return_value = True
         mock_date.now.return_value = self.DATE
 
@@ -82,6 +82,14 @@ class TestGarageService:
         monitor_status()
 
         assert self.STATE.DOORS[self.DOOR_ONE].OPEN_TIME is None
+
+    def test_monitor_status__should_write_status_to_file_when_closes_for_first_door(self, mock_status, mock_date, mock_file):
+        mock_status.return_value = False
+        mock_date.now.return_value = self.DATE
+
+        monitor_status()
+
+        mock_file.assert_any_call('1', self.DATE)
 
     def test_monitor_status__should_not_reset_open_date_when_already_open_for_first_door(self, mock_status, mock_date, mock_file):
         older_date = datetime.now() - timedelta(days=1)
