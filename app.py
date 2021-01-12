@@ -1,12 +1,14 @@
 import logging
-from threading import Event
+
+from svc.constants.garage_state import GarageState
+from svc.controllers.door_status_controller import create_status_app
 
 logging.basicConfig(filename='sumpPump.log', level=logging.DEBUG)
-stop_flag = Event()
 
 try:
     logging.info('Application started!')
-    #call app here
+    create_status_app()
 except KeyboardInterrupt:
-    stop_flag.set()
+    state = GarageState.get_instance()
+    state.terminate_all_threads()
     logging.error('Application interrupted by user')
