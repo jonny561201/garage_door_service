@@ -130,6 +130,14 @@ class TestGarageService:
 
         assert self.STATE.DOORS[self.DOOR_TWO].CLOSED_TIME is None
 
+    def test_monitor_status__should_write_status_to_file_for_second_door(self, mock_status, mock_date, mock_file):
+        mock_status.return_value = True
+        mock_date.now.return_value = self.DATE
+
+        monitor_status()
+
+        mock_file.assert_any_call('2', self.DATE)
+
     def test_monitor_status__should_set_status_to_closed_when_garage_door_closed_for_second_door(self, mock_status, mock_date, mock_file):
         mock_status.return_value = False
 
