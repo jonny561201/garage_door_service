@@ -64,10 +64,10 @@ function createEnvironmentVariableFile {
 }
 
 function createFile {
-    echo -e "Enter JWT_SECRET:${WHITE}"
-    read JWT_SECRET
+    echo -e "Enter FILE_NAME:${WHITE}"
+    read FILE_NAME
 
-    echo "JWT_SECRET=${JWT_SECRET}" > serviceEnvVariables
+    echo "FILE_NAME=${FILE_NAME}" > serviceEnvVariables
 }
 
 
