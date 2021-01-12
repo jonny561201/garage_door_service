@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 
 import pytz
@@ -24,8 +25,10 @@ def __update_door_status(door_state, is_open, door_num):
         door_state.OPEN_TIME = now
         door_state.CLOSED_TIME = None
         write_status_to_file(door_num, now)
+        logging.info(f'----------setting state to open: {now}')
     if not is_open and door_state.CLOSED_TIME is None:
         door_state.STATUS = Automation.GARAGE.CLOSED
         door_state.CLOSED_TIME = now
         door_state.OPEN_TIME = None
         write_status_to_file(door_num, now)
+        logging.info(f'----------setting state to closed: {now}')
