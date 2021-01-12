@@ -17,6 +17,10 @@ class GarageState:
         else:
             GarageState.__instance = self
 
+    def terminate_all_threads(self):
+        for key, door in self.DOORS.items():
+            door.STOP_EVENT.set()
+
     @staticmethod
     def get_instance():
         if GarageState.__instance is None:
