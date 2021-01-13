@@ -8,7 +8,7 @@ logging.basicConfig(filename='garageDoorStatus.log', level=logging.DEBUG)
 try:
     logging.info('Application started!')
     create_status_app()
-except KeyboardInterrupt:
+except Exception:
     state = GarageState.get_instance()
     state.terminate_thread()
     logging.error('Application interrupted by user')
