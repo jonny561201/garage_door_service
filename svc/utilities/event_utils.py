@@ -16,9 +16,7 @@ class MyThread(Thread):
 
 
 # stop_event.set() will kill the process
-def create_thread(state, fn, delay=Automation.TIMING.FIVE_SECONDS):
+def create_thread(fn, delay=Automation.TIMING.THIRTY_SECONDS):
     stop_event = Event()
-    state.STOP_EVENT = stop_event
     fn()
-    state.ACTIVE_THREAD = MyThread(stop_event, fn, delay)
-    state.ACTIVE_THREAD.start()
+    return MyThread(stop_event, fn, delay)

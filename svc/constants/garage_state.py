@@ -7,7 +7,6 @@ class DoorState:
 class GarageState:
     __instance = None
     ACTIVE_THREAD = None
-    STOP_EVENT = None
     DOORS = {'1': DoorState(),
              '2': DoorState()}
 
@@ -18,7 +17,7 @@ class GarageState:
             GarageState.__instance = self
 
     def terminate_thread(self):
-        self.STOP_EVENT.set()
+        self.ACTIVE_THREAD.stopped.set()
 
     @staticmethod
     def get_instance():
