@@ -6,13 +6,13 @@ from svc.constants.home_automation import Automation
 from svc.utilities.event_utils import create_thread
 
 
-def test_function(*args):
+def my_function(*args):
     pass
 
 
 @patch('svc.utilities.event_utils.Event')
 class TestEvent:
-    FUNCT = test_function
+    FUNCT = my_function
     GARAGE_ID = '1'
 
     def test_create_thread__should_set_stop_event(self, mock_event):
